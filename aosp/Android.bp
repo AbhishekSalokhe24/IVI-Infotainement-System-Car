@@ -1,0 +1,36 @@
+// AOSP Soong Build Configuration
+android_app {
+    name: "IVILauncher",
+    srcs: [
+        "app/src/main/**/*.kt",
+        "libraries/*/src/main/**/*.kt",
+        "features/*/src/main/**/*.kt",
+    ],
+    resource_dirs: [
+        "app/src/main/res",
+        "libraries/*/src/main/res",
+        "features/*/src/main/res",
+    ],
+    manifest: "app/src/main/AndroidManifest.xml",
+
+    platform_apis: true,
+    certificate: "platform",
+    privileged: true,
+
+    static_libs: [
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.material3_material3",
+        "androidx.car.app_app",
+        "car-ui-lib",
+        "hilt_android",
+    ],
+
+    required: [
+        "privapp-permissions-ivi.xml",
+    ],
+
+    optimize: {
+        enabled: true,
+        proguard_flags_files: ["app/proguard-rules.pro"],
+    },
+}

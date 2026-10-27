@@ -1,0 +1,16 @@
+# SELinux policy for IVI application in AOSP
+type ivi_app, domain;
+type ivi_app_data_file, file_type, data_file_type;
+
+# Allow IVI app to access vehicle HAL
+allow ivi_app vehicle_hal_service:service_manager find;
+allow ivi_app carservice_service:service_manager find;
+
+# Allow access to audio HAL
+allow ivi_app audio_hal_service:service_manager find;
+
+# Allow access to Bluetooth
+allow ivi_app bluetooth_service:service_manager find;
+
+# Allow network access for navigation and connectivity
+net_domain(ivi_app)
